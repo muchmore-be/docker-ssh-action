@@ -11,6 +11,11 @@ if [ -z "$INPUT_SSH_HOST" ]; then
     exit 1
 fi
 
+if [ -z "$INPUT_SSH_PUBLIC_KEY" ]; then
+    echo "Input INPUT_SSH_PUBLIC_KEY is required!"
+    exit 1
+fi
+
 if [ -z "$INPUT_SSH_PRIVATE_KEY" ]; then
     echo "Input INPUT_SSH_PRIVATE_KEY is required!"
     exit 1
@@ -37,6 +42,7 @@ ssh-add "$HOME/.ssh/docker"
 
 # Add public key to known hosts.
 ssh-keyscan -t rsa $INPUT_SSH_HOST >> ~/.ssh/known_hosts
+printf '%s %s\n' "$INPUT_SSH_HOST" "$INPUT_SSH_PUBLIC_KEY" > ~/.ssh/known_hosts
 
 echo "Connecting to $INPUT_SSH_HOST..."
 docker --host ssh://$INPUT_SSH_USER@$INPUT_SSH_HOST stack deploy --compose-file $INPUT_STACK_COMPOSE_FILE --with-registry-auth $INPUT_STACK_NAME 2>&1
