@@ -1,6 +1,6 @@
 # action.yml
-name: 'Remote Docker Command'
-description: 'Run docker commands on a remote docker host (ssh).'
+name: 'Remote Docker Swarm Deploy'
+description: 'Deploy a stack to a docker swarm (using ssh).'
 author: 'guus@muchmore.be'
 inputs:
   ssh_user:  # id of input
@@ -14,11 +14,12 @@ inputs:
   ssh_private_key:  # id of input
     description: 'The SSH private key you wish to use'
     required: true
-  args:
-    description: "the docker command and arguments you wish to use"
-    required: false
+  stack_compose_file:  # id of input
+    description: 'The stack compose file you wish to use'
+    required: true
+  stack_name:  # id of input
+    description: 'The stack name you wish to use'
+    required: true
 runs:
   using: 'docker'
   image: 'Dockerfile'
-  args:
-    - ${{ inputs.who-to-greet }}
