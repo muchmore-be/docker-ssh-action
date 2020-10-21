@@ -1,0 +1,24 @@
+# action.yml
+name: 'Remote Docker Command'
+description: 'Run docker commands on a remote docker host (ssh).'
+author: 'guus@muchmore.be'
+inputs:
+  ssh_user:  # id of input
+    description: 'The SSH user you wish to use'
+    required: true
+    default: 'root'
+  ssh_host:  # id of input
+    description: 'The SSH host you wish to use'
+    required: true
+    default: 'yourserver.test'
+  ssh_private_key:  # id of input
+    description: 'The SSH private key you wish to use'
+    required: true
+  args:
+    description: "the docker command and arguments you wish to use"
+    required: false
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.who-to-greet }}
