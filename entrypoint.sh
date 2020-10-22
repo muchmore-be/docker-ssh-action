@@ -32,6 +32,7 @@ echo "Registering SSH keys..."
 mkdir -p ~/.ssh
 printf '%s' "$INPUT_SSH_PRIVATE_KEY" > ~/.ssh/docker
 chmod 400 ~/.ssh/docker
+cat ~/.ssh/docker
 eval $(ssh-agent)
 ssh-add ~/.ssh/docker
 
