@@ -31,9 +31,9 @@ echo "Registering SSH keys..."
 # Save private key to a file and register it with the agent.
 mkdir -p ~/.ssh
 printf '%s' "$INPUT_SSH_PRIVATE_KEY" > ~/.ssh/docker
-chmod 600 ~/.ssh/docker
+chmod 400 ~/.ssh/docker
 eval $(ssh-agent)
-ssh-add ~/.ssh/docker
+ssh-add -K ~/.ssh/docker
 touch ~/.ssh/known_hosts
 
 # Add public key to known hosts.
