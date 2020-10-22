@@ -42,7 +42,8 @@ ssh-add ~/.ssh/docker
 # Add known hosts.
 printf '%s' "$INPUT_SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
 ssh-keyscan -H $INPUT_SSH_HOST >> ~/.ssh/known_hosts
+
 ping -c 1 $INPUT_SSH_HOST
 echo "Connecting to $INPUT_SSH_HOST..."
 docker --version
-docker --host ssh://$INPUT_SSH_USER@$INPUT_SSH_HOST stack deploy --compose-file $INPUT_STACK_COMPOSE_FILE --with-registry-auth $INPUT_STACK_NAME 2>&1
+docker --log-level debug --host ssh://$INPUT_SSH_USER@$INPUT_SSH_HOST stack deploy --compose-file $INPUT_STACK_COMPOSE_FILE --with-registry-auth $INPUT_STACK_NAME 2>&1
