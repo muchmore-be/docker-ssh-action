@@ -39,4 +39,5 @@ ssh-keyscan -t rsa $INPUT_SSH_HOST > $HOME/.ssh/known_hosts
 ssh-keyscan -t rsa $INPUT_SSH_HOST > /etc/ssh/ssh_known_hosts
 
 echo "Connecting to $INPUT_SSH_HOST..."
-ssh $INPUT_SSH_USER@$INPUT_SSH_HOST "docker stack deploy --with-registry-auth --compose-file $INPUT_STACK_COMPOSE_FILE $INPUT_STACK_NAME"
+scp $INPUT_STACK_COMPOSE_FILE $INPUT_SSH_USER@$INPUT_SSH_HOST:/tmp/stack.yml
+ssh $INPUT_SSH_USER@$INPUT_SSH_HOST "docker stack deploy --with-registry-auth --compose-file /tmp/stack.yml $INPUT_STACK_NAME"
