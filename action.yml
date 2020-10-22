@@ -17,6 +17,9 @@ inputs:
   ssh_private_key:  # id of input
     description: 'The SSH private key you wish to use'
     required: true
+  ssh_public_key:  # id of input
+    description: 'The SSH public key you wish to use'
+    required: true
   stack_compose_file:  # id of input
     description: 'The stack compose file you wish to use'
     required: true

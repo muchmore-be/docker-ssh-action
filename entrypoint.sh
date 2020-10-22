@@ -41,6 +41,8 @@ eval $(ssh-agent)
 ssh-add $HOME/.ssh/docker
 # Add known hosts.
 ssh-keyscan -t rsa $INPUT_SSH_HOST > $HOME/.ssh/known_hosts
+printf '%s %s\n' "$INPUT_SSH_HOST" "$INPUT_SSH_PUBLIC_KEY" >> $HOME/.ssh/known_hosts
+printf '%s %s\n' "$SSH_HOST" "$INPUT_SSH_PUBLIC_KEY" >> /etc/ssh/ssh_known_hosts
 echo "Connecting to $INPUT_SSH_HOST..."
 docker --version
 docker --log-level debug --host ssh://$INPUT_SSH_USER@$INPUT_SSH_HOST stack deploy --compose-file $INPUT_STACK_COMPOSE_FILE --with-registry-auth $INPUT_STACK_NAME 2>&1
