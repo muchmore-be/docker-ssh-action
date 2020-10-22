@@ -11,11 +11,6 @@ if [ -z "$INPUT_SSH_HOST" ]; then
     exit 1
 fi
 
-if [ -z "$INPUT_SSH_KNOWN_HOSTS" ]; then
-    echo "Input INPUT_SSH_KNOWN_HOSTS is required!"
-    exit 1
-fi
-
 if [ -z "$INPUT_SSH_PRIVATE_KEY" ]; then
     echo "Input INPUT_SSH_PRIVATE_KEY is required!"
     exit 1
