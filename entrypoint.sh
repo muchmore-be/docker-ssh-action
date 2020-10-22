@@ -11,7 +11,7 @@ if [ -z "$INPUT_SSH_HOST" ]; then
     exit 1
 fi
 
-if [ -z "$INPUT_SSH_KNOWN_HOSTS"]; then
+if [ -z "$INPUT_SSH_KNOWN_HOSTS" ]; then
     echo "Input INPUT_SSH_KNOWN_HOSTS is required!"
     exit 1
 fi
@@ -41,6 +41,7 @@ eval $(ssh-agent)
 ssh-add ~/.ssh/docker
 # Add known hosts.
 printf '%s' "$INPUT_SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+cat ~/.ssh/known_hosts
 
 echo "Connecting to $INPUT_SSH_HOST..."
 docker --version
