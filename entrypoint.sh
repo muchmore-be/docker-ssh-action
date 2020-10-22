@@ -34,15 +34,13 @@ fi
 echo "Registering SSH keys..."
 
 # Save private key to a file and register it with the agent.
-mkdir -p ~/.ssh
-printf '%s' "$INPUT_SSH_PRIVATE_KEY" > ~/.ssh/docker
-chmod 600 ~/.ssh/docker
+mkdir -p $HOME/.ssh
+printf '%s' "$INPUT_SSH_PRIVATE_KEY" > $HOME/.ssh/docker
+chmod 600 $HOME/.ssh/docker
 eval $(ssh-agent)
-ssh-add ~/.ssh/docker
+ssh-add $HOME/.ssh/docker
 # Add known hosts.
-ssh-keyscan -t rsa $INPUT_SSH_HOST >> ~/.ssh/known_hosts
-
-ping -c 1 $INPUT_SSH_HOST
+ssh-keyscan -t rsa $INPUT_SSH_HOST > $HOME/.ssh/known_hosts
 echo "Connecting to $INPUT_SSH_HOST..."
 docker --version
 docker --log-level debug --host ssh://$INPUT_SSH_USER@$INPUT_SSH_HOST stack deploy --compose-file $INPUT_STACK_COMPOSE_FILE --with-registry-auth $INPUT_STACK_NAME 2>&1
