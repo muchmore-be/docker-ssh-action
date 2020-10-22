@@ -11,9 +11,6 @@ inputs:
     description: 'The SSH host you wish to use'
     required: true
     default: 'yourserver.test'
-  ssh_public_key:  # id of input
-    description: 'The SSH public key you wish to use'
-    required: true
   ssh_private_key:  # id of input
     description: 'The SSH private key you wish to use'
     required: true
