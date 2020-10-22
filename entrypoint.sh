@@ -41,8 +41,7 @@ eval $(ssh-agent)
 ssh-add ~/.ssh/docker
 # Add known hosts.
 printf '%s' "$INPUT_SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
-cat ~/.ssh/known_hosts
-ping muchmore.be
+ping -c 1 $INPUT_SSH_HOST
 echo "Connecting to $INPUT_SSH_HOST..."
 docker --version
 docker --host ssh://$INPUT_SSH_USER@$INPUT_SSH_HOST stack deploy --compose-file $INPUT_STACK_COMPOSE_FILE --with-registry-auth $INPUT_STACK_NAME 2>&1
