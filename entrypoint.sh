@@ -40,4 +40,4 @@ ssh-keyscan -t rsa $INPUT_SSH_HOST > /etc/ssh/ssh_known_hosts
 
 echo "Connecting to $INPUT_SSH_HOST..."
 docker --version
-docker --log-level debug --host ssh://$INPUT_SSH_USER@$INPUT_SSH_HOST stack deploy --compose-file $INPUT_STACK_COMPOSE_FILE --with-registry-auth $INPUT_STACK_NAME 2>&1
+docker --log-level debug --host ssh://$INPUT_SSH_USER@$INPUT_SSH_HOST stack deploy --with-registry-auth --compose-file $INPUT_STACK_COMPOSE_FILE $INPUT_STACK_NAME 2>&1
