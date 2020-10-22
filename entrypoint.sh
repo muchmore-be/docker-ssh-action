@@ -44,6 +44,5 @@ touch ~/.ssh/known_hosts
 # Add public key to known hosts.
 ssh-keyscan -t rsa $INPUT_SSH_HOST >> ~/.ssh/known_hosts
 echo "Connecting to $INPUT_SSH_HOST..."
-echo "$INPUT_SSH_PUBLIC_KEY"
 docker --version
 docker --host ssh://$INPUT_SSH_USER@$INPUT_SSH_HOST stack deploy --compose-file $INPUT_STACK_COMPOSE_FILE --with-registry-auth $INPUT_STACK_NAME 2>&1
