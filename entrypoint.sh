@@ -40,7 +40,8 @@ chmod 600 ~/.ssh/docker
 eval $(ssh-agent)
 ssh-add ~/.ssh/docker
 # Add known hosts.
-ssh-keyscan -H muchmore.be > ~/.ssh/known_hosts
+printf '%s' "$INPUT_SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+ssh-keyscan -H $INPUT_SSH_HOST >> ~/.ssh/known_hosts
 ping -c 1 $INPUT_SSH_HOST
 echo "Connecting to $INPUT_SSH_HOST..."
 docker --version
